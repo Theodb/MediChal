@@ -19,7 +19,7 @@ def extract_zip_to_memory(input_zip):
     return {name: BytesIO(input_zip.read(name)) for name in input_zip.namelist() if name.endswith('.png')}
 
 par_img_files = extract_zip_to_memory(path_par)
-un_img_files = extract_zip_to_memory(path_par)
+un_img_files = extract_zip_to_memory(path_un)
 
 infected_images = np.array([np.asarray(Image.open(x)) for x in par_img_files.values()])
 uninfected_images = np.array([np.asarray(Image.open(x)) for x in un_img_files.values()])
