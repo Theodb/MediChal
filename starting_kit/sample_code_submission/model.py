@@ -7,6 +7,7 @@ You must supply at least 4 methods:
 - load: reloads the model.
 '''
 
+import pickle
 import numpy as np   # We recommend to use numpy arrays
 from os.path import isfile
 from sklearn.base import BaseEstimator
@@ -37,7 +38,7 @@ class model (BaseEstimator):
         
         '''
         
-        """
+        
         self.num_train_samples = X.shape[0]
         if X.ndim>1: self.num_feat = X.shape[1]
         print("FIT: dim(X)= [{:d}, {:d}]".format(self.num_train_samples, self.num_feat))
@@ -47,9 +48,9 @@ class model (BaseEstimator):
         if (self.num_train_samples != num_train_samples):
             print("ARRGH: number of samples in X and y do not match!")
         
-        """
-            
-        self.classifier_.fit(X, y)
+        
+        
+        self.classifier.fit(X, np.ravel(y))
         self.is_trained=True
         
         return self
@@ -68,7 +69,7 @@ class model (BaseEstimator):
         print("PREDICT: dim(y)= [{:d}, {:d}]".format(num_test_samples, self.num_labels))
         
         
-        return self.classifier_.predict(X)
+        return self.classifier.predict(X)
 
     def save(self, path="./"):
         pickle.dump(self, open(path + '_model.pickle', "wb"))
