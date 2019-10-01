@@ -11,9 +11,11 @@ import pickle
 import numpy as np   # We recommend to use numpy arrays
 from os.path import isfile
 from sklearn.base import BaseEstimator
+from sklearn.ensemble import RandomForestClassifier
 
 class model (BaseEstimator):
-    def __init__(self, classifier):
+   def __init__(self, classifier=RandomForestClassifier(random_state=42)):
+   
         '''
         This constructor is supposed to initialize data members.
         Use triple quotes for function documentation. 
@@ -27,7 +29,7 @@ class model (BaseEstimator):
         self.classifier = classifier
         
         
-    def fit(self, X, y):
+   def fit(self, X, y):
         '''
         This function should train the model parameters.
         Here we do nothing in this example...
@@ -54,10 +56,8 @@ class model (BaseEstimator):
         self.is_trained=True
         
         return self
-        
-        
-
-    def predict(self, X):
+   
+   def predict(self, X):
         '''
         This function  provides predictions of labels on (test) data
         '''
@@ -70,15 +70,14 @@ class model (BaseEstimator):
         
         
         return self.classifier.predict(X)
+   def save(self, path="./"):
+      pickle.dump(self, open(path + '_model.pickle', "wb"))
 
-    def save(self, path="./"):
-        pickle.dump(self, open(path + '_model.pickle', "wb"))
-
-    def load(self, path="./"):
-        modelfile = path + '_model.pickle'
-        if isfile(modelfile):
-            with open(modelfile, 'rb') as f:
-                self = pickle.load(f)
-            print("Model reloaded from: " + modelfile)
-        return self
+   def load(self, path="./"):
+      modelfile = path + '_model.pickle'
+      if isfile(modelfile):
+         with open(modelfile, 'rb') as f:
+            self = pickle.load(f)
+         print("Model reloaded from: " + modelfile)
+      return self
 
