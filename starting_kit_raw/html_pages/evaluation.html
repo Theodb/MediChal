@@ -1,0 +1,30 @@
+
+<h1>Evaluation</h1>
+
+<p>
+The problem is a binary classification problem. Each sample is an an image of a cell which can be infected or not.
+<br>
+You are given for training a set of images which is reduced to 6 numerical features, so you have
+a matrix containing those 6 features for 60% of the total number of images in a matrix called X_train.
+For the labels, you have an array of labels of same length as the matrix filled with zeros and ones which indicates whether the cell is infected or not.
+<br>
+Your task is to train a model which predicts the labels of the test sample matrix X_test and the validation sample matrix X_valid.
+<br>
+There are 2 phases:
+<ul>
+<li> <b>Phase 1: development phase. </b> We provide you with labeled training data and unlabeled validation and test data.
+Make predictions for both datasets. However, you will receive feed-back on your performance on the validation set only.
+The performance of your LAST submission will be displayed on the leaderboard.
+<li> <b>Phase 2: final phase.</b> You do not need to do anything. Your last submission of phase 1 will be automatically forwarded.
+Your performance on the test set will appear on the leaderboard when the organizers finish checking the submissions.
+</ul>
+
+This sample competition allows you to submit either:
+<ul>
+<li> Only prediction results (no code).
+<li> A pre-trained prediction model.
+<li> A prediction model that must be trained and tested.
+</ul>
+
+The submissions are evaluated using the <b>area under the roc curve</b> metric.
+</p>
